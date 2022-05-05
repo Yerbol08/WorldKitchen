@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "17605030286",
+    "project_id": "worldkitchen-998dd",
+    "storage_bucket": "worldkitchen-998dd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:17605030286:android:9574d75fa2621dd7f7f4df",
+        "android_client_info": {
+          "package_name": "com.example.worldkitchen"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "17605030286-ee71l9meq7kj393hhsuihmb6rn2n5oqv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDxwvfSE8mQT8rgssB_JFp7c8V_rKyiMmw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "17605030286-ee71l9meq7kj393hhsuihmb6rn2n5oqv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
