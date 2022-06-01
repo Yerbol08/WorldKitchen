@@ -20,42 +20,43 @@ class Login : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         logToRegBtn = findViewById(R.id.loginToReg)
-        logToRegBtn.setOnClickListener(View.OnClickListener {
+        logToRegBtn.setOnClickListener {
             val intent = Intent(this@Login, Register::class.java)
             startActivity(intent)
-        })
+        }
         userMail = findViewById(R.id.login_mail)
         userPassword = findViewById<EditText>(R.id.login_password)
         btnLogin = findViewById(R.id.loginnBtn)
         loginProgress = findViewById(R.id.login_progress)
         mAuth = FirebaseAuth.getInstance()
         HomeActivity = Intent(this, MainActivity::class.java)
-        loginProgress.setVisibility(View.INVISIBLE)
-        btnLogin.setOnClickListener(View.OnClickListener {
-            loginProgress.setVisibility(View.VISIBLE)
-            btnLogin.setVisibility(View.INVISIBLE)
+        loginProgress.visibility = View.INVISIBLE
+        btnLogin.setOnClickListener{
+            loginProgress.visibility = View.VISIBLE
+            btnLogin.visibility = View.INVISIBLE
             val mail = userMail.getText().toString()
-            val password: String = userPassword.getText().toString()
+            val password: String = userPassword.text.toString()
             if (mail.isEmpty() || password.isEmpty()) {
                 showMessage("Please Verify All Field")
-                btnLogin.setVisibility(View.VISIBLE)
-                loginProgress.setVisibility(View.INVISIBLE)
-            } else {
+                btnLogin.visibility = View.VISIBLE
+                loginProgress.visibility = View.INVISIBLE
+            }
+            else {
                 signIn(mail, password)
             }
-        })
+        }
     }
 
     private fun signIn(mail: String, password: String) {
-        mAuth!!.signInWithEmailAndPassword(mail, password).addOnCompleteListener { task ->
+        mAuth.signInWithEmailAndPassword(mail, password).addOnCompleteListener { task ->
             if (task.isSuccessful) {
-                loginProgress!!.visibility = View.INVISIBLE
-                btnLogin!!.visibility = View.VISIBLE
+                loginProgress.visibility = View.INVISIBLE
+                btnLogin.visibility = View.VISIBLE
                 updateUI()
             } else {
                 showMessage(task.exception!!.message)
-                btnLogin!!.visibility = View.VISIBLE
-                loginProgress!!.visibility = View.INVISIBLE
+                btnLogin.visibility = View.VISIBLE
+                loginProgress.visibility = View.INVISIBLE
             }
         }
     }
@@ -69,12 +70,12 @@ class Login : AppCompatActivity() {
         Toast.makeText(applicationContext, text, Toast.LENGTH_LONG).show()
     }
 
-    //    override fun onStart() {
-//        super.onStart()
-//        val user = mAuth!!.currentUser
-//        if (user != null) {
-//            //user is already connected  so we need to redirect him to home page
-//            updateUI()
-//        }
-//    }
+        override fun onStart() {
+        super.onStart()
+        val user = mAuth!!.currentUser
+        if (user != null) {
+            //user is already connected  so we need to redirect him to home page
+            updateUI()
+        }
+    }
 }

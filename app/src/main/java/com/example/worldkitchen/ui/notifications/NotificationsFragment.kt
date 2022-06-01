@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.worldkitchen.databinding.FragmentNotificationsBinding
 
 class NotificationsFragment : Fragment() {
@@ -27,11 +29,21 @@ class NotificationsFragment : Fragment() {
 
         _binding = FragmentNotificationsBinding.inflate(inflater, container, false)
         val root: View = binding.root
+        binding.recyclerView.setHasFixedSize(true)
 
-        val textView: TextView = binding.textNotifications
-        notificationsViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
+        val mLayoutManager: RecyclerView.LayoutManager = LinearLayoutManager(context)
+        binding.recyclerView.layoutManager = mLayoutManager
+
+        val videoIds = arrayOf(
+            "i01mlTtrnuI",
+            "AEhw7kLsLFU",
+            "oDNoRYGWnnw",
+            "Yjuc-kP59Bg",
+            "IfMen7wbFco",
+        )
+
+        val recyclerViewAdapter: RecyclerView.Adapter<*> = VideoAdapter(videoIds, this.lifecycle)
+        binding.recyclerView.adapter = recyclerViewAdapter
         return root
     }
 
